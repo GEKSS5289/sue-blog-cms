@@ -1,0 +1,39 @@
+@mixin marginTopAndBottom($top:50px,$bottom:50px) {
+  margin-top: $top;
+  margin-bottom: $top;
+}
+
+;
+
+@mixin shadow() {
+  box-shadow: 1px 1px 12px #888888;
+}
+
+@mixin shadowMenuItem() {
+  box-shadow: 2px 2px 5px #888888;
+}
+
+
+@mixin shadowHover() {
+  box-shadow: 1px 7px 12px #888888;
+}
+
+@mixin textareaDef() {
+  border: none;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  resize: none;
+  font-weight: bold;
+  font-family: Arial;
+}
+
+@mixin showbegin() {
+  opacity: 0;
+  margin-left: 400px !important;
+  transition: all 1s;
+}
+
+@mixin showEnd() {
+  transition: all 1s;
+  opacity: 1;
+}
