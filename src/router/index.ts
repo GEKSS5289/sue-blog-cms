@@ -2,6 +2,12 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Login from "@/views/Login.vue";
 import Admin from "@/views/admin/Admin.vue";
 import Sue from "@/views/admin/Sue.vue";
+import DynamicMng from "@/views/admin/DynamicMng.vue";
+import ArticleMng from "@/views/admin/ArticleMng.vue";
+import MessageMng from "@/views/admin/MessageMng.vue";
+import LogsMng from "@/views/admin/LogsMng.vue";
+import IssueMng from "@/views/admin/IssueMng.vue";
+import FileMng from "@/views/admin/FileMng.vue";
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -19,7 +25,37 @@ const routes: Array<RouteRecordRaw> = [
         path:'/admin/sue',
         name:'sue',
         component:Sue
-      }
+      },
+      {
+        path:'/admin/dynamic',
+        name:'dynamic',
+        component:DynamicMng
+      },
+      {
+        path:'/admin/article',
+        name:'article',
+        component:ArticleMng
+      },
+      {
+        path:'/admin/message',
+        name:'message',
+        component:MessageMng
+      },
+      {
+        path:'/admin/logs',
+        name:'logs',
+        component:LogsMng
+      },
+      {
+        path:'/admin/issue',
+        name:'issue',
+        component:IssueMng
+      },
+      {
+        path:'/admin/file',
+        name:'file',
+        component:FileMng
+      },
     ]
   }
   // {

@@ -138,10 +138,12 @@ a {
   width: 1226px;
   margin-left: auto;
   margin-right: auto;
+
 }
 
 .sue-container {
   width: 1000px;
+  margin-left: 50px;
 }
 
 .blog-readme-begin {
@@ -168,4 +170,8 @@ a {
   @include showEnd();
 }
 
-
+.router-link-active{
+  background-color: #1ABC9C;
+  color: white !important;
+  transition: all 1s;
+}

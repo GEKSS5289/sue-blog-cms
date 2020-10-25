@@ -10,7 +10,9 @@
           </div>
           <div class="login-right">
             <div class="login-input">
+              <h4>ACCOUNT</h4>
               <input type="text" maxlength="32" placeholder="输入您的管理员账号">
+              <h4>PASSWORD</h4>
               <input type="password" maxlength="32" placeholder="输入您的密码">
               <router-link to="/admin" class="login-btn">LOGIN</router-link>
             </div>
@@ -106,7 +108,10 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-
+          h4{
+            margin-bottom: 10px;
+            font-weight: bold;
+          }
           .login-btn{
             width: 80px;
             border-radius: 15px;
@@ -115,7 +120,7 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            background-color: #3498DB;
+            background-color: #1ABC9C;
             /*border: 4px solid #1ABC9C;*/
             /*padding: 10px;*/
             color: #FBFCFC;
@@ -123,9 +128,6 @@
             font-weight: bold;
             font-size: 15px;
             cursor: pointer;
-            &:hover{
-               background-color:#1ABC9C;
-            }
           }
           input{
             width: 200px;

@@ -1,10 +1,10 @@
 <template>
-  <div class="sue-container" :class="{'blog-readme-begin':status,'blog-readme-end':!status}">
+  <div class="sue-container" :class="{'blog-readme-begin':status,'blog-readme-end':!status}" >
 
     <div class="sue-header">
       <div class="welcome-title">
         <h1>WELCOME SUE</h1>
-        <h4>有志者，事竟成</h4>
+        <h4>🌈有志者，事竟成</h4>
       </div>
     </div>
 
@@ -67,11 +67,14 @@
 
 <script lang="ts">
     import {defineComponent,ref} from 'vue'
-    import {BlogInit} from '@/utils/BLogInit'
+    import {BlogInit} from '@/common/utils/BLogInit'
 
     export default defineComponent({
         name: "Sue",
         setup(){
+
+
+
           return{
             ...BlogInit()
           }
@@ -85,7 +88,7 @@
 .sue-container{
 
   /*height: 500px;*/
-  margin-left: 50px;
+
   .sue-header{
     display: flex;
     flex-direction: row;

@@ -1,143 +1,171 @@
 <template>
-    <cms-nav></cms-nav>
-    <div class="admin-container container">
-      <div class="admin-left">
-        <div class="menu-list">
-          <router-link to="/admin/sue" tag="a" class="menu-item">
-           <h4>😀SUE</h4>
-          </router-link>
-          <router-link  to="/admin/sue" tag="a" class="menu-item">
-            <h4>📃杂文管理</h4>
-          </router-link>
-          <router-link  to="/admin/sue" tag="a" class="menu-item">
-            <h4>🍦佚态管理</h4>
-          </router-link>
-          <router-link  to="/admin/sue" tag="a" class="menu-item">
-            <h4>☕踩艰管理</h4>
-          </router-link>
-          <router-link to="/admin/sue" tag="a" class="menu-item">
-            <h4>📄文件管理</h4>
-          </router-link>
-          <router-link to="/admin/sue" tag="a" class="menu-item">
-            <h4>👌留言管理</h4>
-          </router-link>
-          <router-link to="/admin/sue" tag="a" class="menu-item">
-            <h4>🍩日志查看</h4>
-          </router-link>
-        </div>
-      </div>
-      <div class="admin-rigth">
-        <div class="admin-nav">
-          <div class="nav-item">
-            日志管理
-            <div class="close">X</div>
-          </div>
-          <div class="nav-item">
-            日志管理
-            <div class="close">X</div>
-          </div>
-          <div class="nav-item">
-            日志管理
-            <div class="close">X</div>
-          </div>
-          <div class="nav-item">
-            日志管理
-            <div class="close">X</div>
-          </div>
-        </div>
-        <router-view></router-view>
+  <cms-nav></cms-nav>
+  <div class="admin-container container">
+    <div class="admin-left">
+      <div class="menu-list">
+        <router-link :to="'/admin/sue'" tag="a" class="menu-item" @click.native ="clickRouter('/admin/sue','sue-me')">
+          <h4>😀SUE</h4>
+        </router-link>
+        <router-link  :to="{name:'dynamic'}"  class="menu-item" @click="clickRouter('/admin/dynamic','sue-dynamic')" >
+          <h4>🍦佚态管理</h4>
+        </router-link>
+        <router-link  :to="{name:'article'}" tag="a" class="menu-item"  @click="clickRouter('/admin/article','sue-article')">
+          <h4>📃杂文管理</h4>
+        </router-link>
+        <router-link  :to="{name:'issue'}"  tag="a" class="menu-item" @click="clickRouter('/admin/issue','sue-issue')" >
+          <h4>☕踩艰管理</h4>
+        </router-link>
+        <router-link  :to="{name:'file'}" tag="a" class="menu-item" @click="clickRouter('/admin/file','sue-file')">
+          <h4>📄文件管理</h4>
+        </router-link>
+        <router-link  :to="{name:'message'}" tag="a" class="menu-item" @click="clickRouter('/admin/message','sue-message')" >
+          <h4>👌留言管理</h4>
+        </router-link>
+        <router-link  :to="{name:'logs'}" tag="a" class="menu-item" @click="clickRouter('/admin/logs','sue-logs')">
+          <h4>🍩日志查看</h4>
+        </router-link>
       </div>
     </div>
+    <div class="admin-rigth">
+      <div class="admin-nav">
+        <div v-if="status!==false" v-for="(item,key,index) in localStorage" :key=index>
+          <router-link v-show="key.indexOf('sue')!==-1" :to="`${item}`" tag="a" class="nav-item">
+            <h2>🧪</h2>{{key.substr(4)}}
+            <div class="close" @click.stop="close(key)">x</div>
+          </router-link >
+        </div>
+        <div v-else>
+          <router-link :to="`/admin/sue`" tag="a" class="nav-item">
+            <h2>🧪</h2>me
+            <div class="close" @click.stop="close(key)">x</div>
+          </router-link >
+        </div>
+
+      </div>
+
+      <router-view ></router-view>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-    import {defineComponent} from 'vue'
-    import CmsNav from "@/components/nav/CmsNav.vue";
-    export default defineComponent({
-        name: "Admin",
-        components:{
-          CmsNav
-        }
-    })
+  import {defineComponent} from 'vue'
+  import CmsNav from "@/components/nav/CmsNav.vue";
+  import {BlogInit} from "@/common/utils/BLogInit";
+  import {BlogNav, routerNav} from "@/common/utils/BlogNav";
+
+  export default defineComponent({
+    name: "Admin",
+    components:{
+      CmsNav
+    },
+    setup(){
+      // localStorage.setItem('sue-aa','sfaf')
+      // localStorage.setItem('sue-aa','sfaf')
+      return{
+        ...BlogInit(),
+        ...BlogNav(),
+        localStorage,
+        status:routerNav()
+      }
+    }
+  })
 </script>
 
 <style lang="scss" scoped>
-.admin-container{
-  margin-top: 10px;
-  /*height: 500px;*/
-  /*width: 100% !important;*/
-  /*background-color: #FBFCFC;*/
-  display: flex;
-  padding: 30px;
-  flex-direction: row;
-  margin-bottom: 100px;
-  /*background-color: red;*/
-  .admin-left{
 
-    .menu-list{
-      padding: 20px;
-      background-color: #FBFCFC;
-      border-radius: 10px;
-      a{
-        display: block;
+  @import "../../assets/style/basic";
+  .admin-container{
+
+    margin-top: 10px;
+    /*height: 500px;*/
+    /*width: 100% !important;*/
+    /*background-color: #FBFCFC;*/
+    display: flex;
+    padding: 30px;
+    width: 1600px;
+    flex-direction: row;
+    margin-bottom: 100px;
+    justify-content: center;
+    /*background-color: red;*/
+    .admin-left{
+
+      .menu-list{
+        padding: 20px;
+        background-color: #FBFCFC;
+        border-radius: 10px;
+        a{
+          display: block;
+          text-decoration: none;
+          color: #273746;
+        }
+      }
+      .menu-item{
         text-decoration: none;
-        color: #273746;
-      }
-    }
-    .menu-item{
-      text-decoration: none;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      width: 150px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        width: 150px;
 
-      h4{
-        text-align: center;
-        font-size: 20px;
-      }
-      padding: 30px;
-      transition: all 0.7s;
-      &:hover{
-        background-color: #1ABC9C;
-        color: #FBFCFC;
-      }
 
-    }
-  }
-  .admin-rigth{
-    .admin-nav{
-      /*padding: 10px;*/
-      margin-left: 50px;
-      /*background-color: red;*/
-      display: flex;
-      margin-bottom: 30px;
-      .nav-item:nth-child(1){
-        margin-left: 0;
-      }
-      .nav-item{
-        width: 100px;
-        padding: 5px;
-        text-align: center;
-        background-color: #1ABC9C;
-        color: white;
-        font-weight: bold;
-        position: relative;
-        transition: all 1s;
-        margin-left: 5px;
+        h4{
+          text-align: center;
+          font-size: 20px;
+        }
+        padding: 30px;
+        transition: all 0.7s;
         &:hover{
-          background-color: #3683d6;
+          background-color: #1ABC9C;
+          color: #FBFCFC;
         }
-        .close{
-          width: 10px;
-          height: 10px;
-          position: absolute;
-          /*background-color:red;*/
-          top: 0px;
-          left: 100px;
-          /*padding: 1px;*/
-          cursor: pointer;
+
+      }
+    }
+    .admin-rigth{
+      /*background-color:red;*/
+      /*width: 15000px;*/
+      .admin-nav{
+        /*padding: 10px;*/
+        margin-left: 50px;
+        /*background-color: red;*/
+        display: flex;
+        margin-bottom: 30px;
+        /*overflow: auto;*/
+        /*width: 1000px;*/
+        /*flex-wrap: wrap;*/
+        .router-link-active{
+          background-color: #1ABC9C !important;
+          color: white !important;
+        }
+        .nav-item{
+          width: 150px;
+
+          padding: 5px;
+          text-align: center;
+          /*border-radius: 5px;*/
+          background-color: #FBFCFC;
+          color: #1ABC9C;
+          font-weight: bold;
+          position: relative;
+          transition: all 1s;
+          /*margin-left: 5px;*/
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          &:hover{
+            background-color: #1ABC9C;
+            color: white;
+          }
+          .close{
+            font-size: 15px;
+            width: 20px;
+            height: 20px;
+            /*background-color: red;*/
+            line-height: 20px;
+            /*padding: 1px;*/
+            cursor: pointer;
+          }
         }
       }
     }
   }
-}
 </style>
