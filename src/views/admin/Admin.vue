@@ -131,7 +131,7 @@
         .nav-item{
           width: 150px;
 
-          padding: 10px;
+          padding: 5px;
           text-align: center;
           /*border-radius: 5px;*/
           background-color: #FBFCFC;
