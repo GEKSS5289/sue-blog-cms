@@ -135,7 +135,7 @@ a {
 }
 
 .container {
-  width: 1226px;
+  width: 1700px;
   margin-left: auto;
   margin-right: auto;
 
@@ -143,6 +143,7 @@ a {
 
 .sue-container {
   width: 1000px;
+
   margin-left: 50px;
 }
 
@@ -174,4 +175,8 @@ a {
   background-color: #1ABC9C;
   color: white !important;
   transition: all 1s;
+}
+
+textarea::placeholder{
+ color: white !important;
 }

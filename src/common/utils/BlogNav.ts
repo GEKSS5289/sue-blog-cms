@@ -6,33 +6,21 @@ export const BlogNav = ()=> {
 
 
   function clickRouter(path:string,name:string) {
-    const temp:PathModel = {
-      path:path,
-      name:name
-    }
     localStorage.setItem(name,path)
   }
 
   function close(name:string) {
 
-
-
     let flag = false
     for(let item in localStorage){
-      if(item.indexOf('article')||
-        item.indexOf('iss')||
-        item.indexOf('dyna')||
-        item.indexOf('message')||
-        item.indexOf('log')||
-        item.indexOf('file')
-      ){
+      if(item.indexOf('sue')&&!item.indexOf('sue-me')){
         console.log('sfsa')
         flag = true
       }
     }
-    console.log(localStorage.getItem('sue-me'))
+
+
     if(localStorage.getItem('sue-me')==''&&!flag){
-      console.log('fas')
       localStorage.setItem('sue-me','/admin/sue')
     }else{
       localStorage.removeItem(name)

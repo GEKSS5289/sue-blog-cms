@@ -88,7 +88,7 @@
 .sue-container{
 
   /*height: 500px;*/
-
+  /*background-color: red;*/
   .sue-header{
     display: flex;
     flex-direction: row;

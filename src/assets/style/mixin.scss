@@ -29,8 +29,10 @@
 
 @mixin showbegin() {
   opacity: 0;
-  margin-left: 200px !important;
+  //margin-top: 400px !important;
   transition: all 1s;
+  transform: translateX(-30px);
+  overflow: hidden;
 }
 
 @mixin showEnd() {

@@ -1,6 +1,6 @@
 <template>
   <cms-nav></cms-nav>
-  <div class="admin-container container">
+  <div class="admin-container container ">
     <div class="admin-left">
       <div class="menu-list">
         <router-link :to="'/admin/sue'" tag="a" class="menu-item" @click.native ="clickRouter('/admin/sue','sue-me')">
@@ -30,13 +30,13 @@
       <div class="admin-nav">
         <div v-if="status!==false" v-for="(item,key,index) in localStorage" :key=index>
           <router-link v-show="key.indexOf('sue')!==-1" :to="`${item}`" tag="a" class="nav-item">
-            <h2>🧪</h2>{{key.substr(4)}}
+            <h2>🧪</h2><h4>{{key.substr(4)}}</h4>
             <div class="close" @click.stop="close(key)">x</div>
           </router-link >
         </div>
         <div v-else>
           <router-link :to="`/admin/sue`" tag="a" class="nav-item">
-            <h2>🧪</h2>me
+            <h2>🧪</h2><h4>me</h4>
             <div class="close" @click.stop="close(key)">x</div>
           </router-link >
         </div>
@@ -76,18 +76,14 @@
 
   @import "../../assets/style/basic";
   .admin-container{
-
     margin-top: 10px;
-    /*height: 500px;*/
-    /*width: 100% !important;*/
-    /*background-color: #FBFCFC;*/
     display: flex;
     padding: 30px;
-    width: 1600px;
+
     flex-direction: row;
     margin-bottom: 100px;
     justify-content: center;
-    /*background-color: red;*/
+
     .admin-left{
 
       .menu-list{
@@ -102,16 +98,16 @@
       }
       .menu-item{
         text-decoration: none;
-        border-radius: 10px;
+        border-radius: 5px;
         margin-bottom: 10px;
         width: 150px;
-
+        padding: 20px;
 
         h4{
           text-align: center;
           font-size: 20px;
         }
-        padding: 30px;
+
         transition: all 0.7s;
         &:hover{
           background-color: #1ABC9C;
@@ -121,17 +117,13 @@
       }
     }
     .admin-rigth{
-      /*background-color:red;*/
-      /*width: 15000px;*/
+      /*background-color: red;*/
       .admin-nav{
-        /*padding: 10px;*/
+        width: 1100px;
         margin-left: 50px;
-        /*background-color: red;*/
         display: flex;
         margin-bottom: 30px;
-        /*overflow: auto;*/
-        /*width: 1000px;*/
-        /*flex-wrap: wrap;*/
+
         .router-link-active{
           background-color: #1ABC9C !important;
           color: white !important;
@@ -139,7 +131,7 @@
         .nav-item{
           width: 150px;
 
-          padding: 5px;
+          padding: 10px;
           text-align: center;
           /*border-radius: 5px;*/
           background-color: #FBFCFC;
@@ -155,14 +147,18 @@
             background-color: #1ABC9C;
             color: white;
           }
+          h4{
+            font-size: 16px;
+          }
           .close{
-            font-size: 15px;
+            font-size: 17px;
             width: 20px;
             height: 20px;
             /*background-color: red;*/
             line-height: 20px;
             /*padding: 1px;*/
             cursor: pointer;
+
           }
         }
       }
