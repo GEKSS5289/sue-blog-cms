@@ -8,7 +8,7 @@ import MessageMng from "@/views/admin/MessageMng.vue";
 import LogsMng from "@/views/admin/LogsMng.vue";
 import IssueMng from "@/views/admin/IssueMng.vue";
 import FileMng from "@/views/admin/FileMng.vue";
-
+import ArticleList from "@/views/admin/ArticleList.vue"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -34,7 +34,15 @@ const routes: Array<RouteRecordRaw> = [
       {
         path:'/admin/article',
         name:'article',
-        component:ArticleMng
+        component:ArticleMng,
+        redirect:'/admin/article/list',
+        children:[
+          {
+            path:'/admin/article/list',
+            name:'articlelist',
+            component:ArticleList
+          }
+        ]
       },
       {
         path:'/admin/message',
