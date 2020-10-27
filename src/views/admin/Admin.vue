@@ -3,7 +3,7 @@
   <div class="admin-container container ">
     <div class="admin-left">
       <div class="menu-list">
-        <router-link :to="'/admin/sue'" tag="a" class="menu-item" @click.native ="clickRouter('/admin/sue','sue-me')">
+        <router-link :to="'/admin/sue'" tag="a" class="menu-item" @click="clickRouter('/admin/sue','sue-me')">
           <h4>😀SUE</h4>
         </router-link>
         <router-link  :to="{name:'dynamic'}"  class="menu-item" @click="clickRouter('/admin/dynamic','sue-dynamic')" >

@@ -9,6 +9,7 @@ import LogsMng from "@/views/admin/LogsMng.vue";
 import IssueMng from "@/views/admin/IssueMng.vue";
 import FileMng from "@/views/admin/FileMng.vue";
 import ArticleList from "@/views/admin/ArticleList.vue"
+import WriteArticle from "@/views/admin/WriteArticle.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -41,6 +42,11 @@ const routes: Array<RouteRecordRaw> = [
             path:'/admin/article/list',
             name:'articlelist',
             component:ArticleList
+          },
+          {
+            path:'/admin/article/write',
+            name:'writearticle',
+            component:WriteArticle
           }
         ]
       },

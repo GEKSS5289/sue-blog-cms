@@ -1,5 +1,5 @@
 <template>
-  <div class="article-list">
+  <div class="article-list"  :class="{'blog-readme-begin':status,'blog-readme-end':!status}">
     <div class="article-item">
       <div class="item-info">
         <h1>JAVAfdgdsgfdgdfsgfdsgds心得</h1>
@@ -35,9 +35,15 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
+  import {BlogInit} from "@/common/utils/BLogInit";
 
   export default  defineComponent({
-    name: 'ArticleList'
+    name: 'ArticleList',
+    setup(){
+      return{
+        ...BlogInit()
+      }
+    }
 
   })
 </script>
