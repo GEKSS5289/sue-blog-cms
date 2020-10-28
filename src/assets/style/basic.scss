@@ -180,3 +180,19 @@ a {
 textarea::placeholder{
  color: white !important;
 }
+
+pre{
+  background-color: #EAF2F8;
+
+
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+code{
+  font-size: 24px;
+  color: #1ABC9C;
+  font-weight: bold;
+  font-family: Arial;
+}

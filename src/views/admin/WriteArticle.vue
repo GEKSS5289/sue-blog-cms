@@ -17,10 +17,10 @@
     </div>
 
     <div class="work-spaces">
-       <textarea placeholder="创作吧...." v-model="context" @keydown="mk2HtmlHandle"></textarea>
+       <textarea placeholder="创作吧...." v-model="context" @input="mk2HtmlHandle"></textarea>
     </div>
 
-    <div v-html="mk2Html">
+    <div class="markdown-html" v-html="mk2Html">
     </div>
 
   </div>
@@ -41,6 +41,7 @@
       const mk2Html = ref('')
       function mk2HtmlHandle (){
         mk2Html.value = marked(context.value)
+        console.log(mk2Html.value)
       }
       return{
         mk2Html,
@@ -62,6 +63,7 @@
     flex-direction: column;
     justify-content: center;
     border-radius: 10px;
+
     .write-header{
 
       display: flex;
@@ -131,5 +133,6 @@
       }
 
     }
+
   }
 </style>
