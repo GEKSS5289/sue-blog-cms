@@ -6,28 +6,8 @@
         <h1>发布时间:2020</h1>
       </div>
       <div class="item-options">
-        <h2 class="article-edit">编辑</h2>
-        <h2 class="article-delete">删除</h2>
-      </div>
-    </div>
-    <div class="article-item">
-      <div class="item-info">
-        <h1>JAVAfdgdsgfdgdfsgfdsgds心得</h1>
-        <h1>发布时间:2020</h1>
-      </div>
-      <div class="item-options">
-        <h2 class="article-edit">编辑</h2>
-        <h2 class="article-delete">删除</h2>
-      </div>
-    </div>
-    <div class="article-item">
-      <div class="item-info">
-        <h1>JAVAfdgdsgfdgdfsgfdsgds心得</h1>
-        <h1>发布时间:2020</h1>
-      </div>
-      <div class="item-options">
-        <h2 class="article-edit">编辑</h2>
-        <h2 class="article-delete">删除</h2>
+        <h2 class="article-edit options">编辑</h2>
+        <h2 class="article-delete options">删除</h2>
       </div>
     </div>
   </div>
@@ -70,22 +50,19 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-
-        .article-edit{
-
-          background-color: #1ABC9C;
+        .options{
           border-radius: 15px;
           text-align: center;
+
           color: white;
           width: 80px;
-
+          cursor: pointer;
+        }
+        .article-edit{
+          background-color: #1ABC9C;
         }
         .article-delete{
-          background-color: red;
-          border-radius: 15px;
-          text-align: center;
-          color: white;
-          width: 80px;
+          background-color: #E74C3C;
         }
       }
     }

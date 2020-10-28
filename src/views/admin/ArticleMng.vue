@@ -65,13 +65,15 @@
       margin-left: 20px;
     }
     .router-link-active{
-      /*border-bottom: 5px solid #1ABC9C!important;*/
+      border-bottom: 2px solid #1ABC9C!important;
       color: #1ABC9C !important;
       background:none;
     }
     a{
       color: #333333;
       font-size: 24px;
+      border-bottom: 2px solid white;
+      padding-bottom: 5px;
     }
 
   }
