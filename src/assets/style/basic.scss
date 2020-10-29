@@ -184,15 +184,47 @@ textarea::placeholder{
 pre{
   background-color: #EAF2F8;
 
-
   padding: 30px;
-  border-radius: 15px;
+  border-radius: 5px;
   margin-bottom: 20px;
   margin-top: 20px;
+
+  code{
+    font-size: 19px;
+    font-weight: bold;
+    color: #273746;
+    font-family: Arial;
+
+  }
+  overflow-x: auto;
 }
 code{
-  font-size: 24px;
+  background-color: #EAF2F8;
+  padding: 5px;
   color: #1ABC9C;
+  font-size: 15px;
   font-weight: bold;
-  font-family: Arial;
+  border-radius: 5px;
+
+}
+
+blockquote{
+  background-color: #EAF2F8;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 23px;
+  border-left:5px solid #5D6D7E;
+  padding: 30px;
+}
+
+ul{
+
+  margin-top: 20px;
+  li{
+    padding: 10px;
+    font-size: 18px;
+    font-weight:bold;
+  }
+  margin-bottom: 20px;
+
 }

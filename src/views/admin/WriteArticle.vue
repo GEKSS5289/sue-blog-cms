@@ -2,6 +2,9 @@
   <div class="write-container" :class="{'blog-readme-begin':status,'blog-readme-end':!status}">
     <div class="write-header">
       <input type="text" placeholder="文章名" class="article-title">
+      <div class="article-preview">
+        <h1 @click="preview">{{previewAndEdit}}</h1>
+      </div>
       <div class="article-category">
         <h1>文章分类</h1>
         <div v-if="false" class="category-list">
@@ -16,11 +19,11 @@
       </div>
     </div>
 
-    <div class="work-spaces">
+    <div class="work-spaces" v-if="!previewStatus">
        <textarea placeholder="创作吧...." v-model="context" @input="mk2HtmlHandle"></textarea>
     </div>
 
-    <div class="markdown-html" v-html="mk2Html">
+    <div class="markdown-html" v-html="mk2Html" v-if="previewStatus">
     </div>
 
   </div>
@@ -39,15 +42,28 @@
 
       const context  = ref('')//输入的数据
       const mk2Html = ref('')
+      const previewStatus = ref(false)
+      const previewAndEdit = ref('预览')
       function mk2HtmlHandle (){
         mk2Html.value = marked(context.value)
         console.log(mk2Html.value)
+      }
+      function preview(){
+        previewStatus.value = !previewStatus.value
+        if(previewStatus.value){
+          previewAndEdit.value = '编辑';
+        }else{
+          previewAndEdit.value = '预览';
+        }
       }
       return{
         mk2Html,
         context,
         mk2HtmlHandle,
         ...BlogInit(),
+        previewStatus,
+        preview,
+        previewAndEdit
       }
     }
   })
@@ -79,12 +95,13 @@
       }
       .article-category{
 
-        margin-left: 200px;
+        /*margin-left: 200px;*/
 
         /*font-size: 10px;*/
         /*background-color: #1ABC9C;*/
         /*color: white;*/
         padding: 10px;
+
 
         h1{
           cursor: pointer;
@@ -98,6 +115,15 @@
           /*padding: 30px;*/
           background-color: #1ABC9C;
           color: white;
+        }
+      }
+      .article-preview{
+        h1{
+          cursor: pointer;
+          transition: all 1s;
+          &:hover{
+            color: #1ABC9C;
+          }
         }
       }
       .article-submit{
@@ -114,11 +140,17 @@
       }
     }
 
+    .markdown-html{
+      padding: 20px;
+      /*background-color: red;*/
+
+    }
     .work-spaces{
 
       padding: 10px;
       display: flex;
       textarea{
+
           padding: 10px;
           background: none;
           color: #333333;
@@ -126,6 +158,7 @@
           width: 950px;
           height: 600px;
           @include textareaDef();
+        overflow-y: auto !important;
           margin-bottom: 20px;
         &::placeholder{
           color: #5D6D7E !important;
