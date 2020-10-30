@@ -123,7 +123,7 @@
         margin-left: 50px;
         display: flex;
         margin-bottom: 30px;
-
+        overflow-x: auto;
         .router-link-active{
           background-color: #1ABC9C !important;
           color: white !important;
