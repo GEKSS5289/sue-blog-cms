@@ -1,4 +1,4 @@
-import {PathModel} from "@/common/interface/datamodel";
+import {PathModel} from "@/common/model/datamodel";
 import router from "@/router";
 import {ref} from "vue";
 

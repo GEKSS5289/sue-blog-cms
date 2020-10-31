@@ -1,7 +1,7 @@
 <template>
   <div class="write-container" :class="{'blog-readme-begin':status,'blog-readme-end':!status}">
     <div class="write-header">
-      <input type="text" placeholder="文章名" class="article-title">
+      <input type="text" v-model="articleTitle" placeholder="文章名" class="article-title">
       <div class="article-preview">
         <h1 @click="preview">{{previewAndEdit}}</h1>
       </div>
@@ -15,12 +15,12 @@
         </div>
       </div>
       <div class="article-submit">
-        <h1>发布</h1>
+        <h1 @click="pushArticle">发布</h1>
       </div>
     </div>
 
     <div class="work-spaces" v-if="!previewStatus">
-       <textarea placeholder="创作吧...." v-model="context" @input="mk2HtmlHandle"></textarea>
+      <textarea placeholder="创作吧...." v-model="content" @input="mk2HtmlHandle"></textarea>
     </div>
 
     <div class="markdown-html" v-html="mk2Html" v-if="previewStatus">
@@ -33,6 +33,9 @@
   import { defineComponent ,ref,reactive} from 'vue'
   import {BlogInit} from "@/common/utils/BLogInit";
   import marked from 'marked'
+  import axios from 'axios'
+  import { blogAdminApi } from '@/common/api-router/apirouter';
+  import {ArticleModel} from "@/common/model/datamodel";
   export default  defineComponent({
     name: 'WriteArticle',
     components:{
@@ -40,12 +43,13 @@
     },
     setup(){
 
-      const context  = ref('')//输入的数据
+      const articleContent  = ref('')//输入的数据
       const mk2Html = ref('')
+      const articleTitle = ref('')
       const previewStatus = ref(false)
       const previewAndEdit = ref('预览')
       function mk2HtmlHandle (){
-        mk2Html.value = marked(context.value)
+        mk2Html.value = marked(articleContent.value)
         console.log(mk2Html.value)
       }
       function preview(){
@@ -56,14 +60,33 @@
           previewAndEdit.value = '预览';
         }
       }
+
+      function pushArticle() {
+        let data:ArticleModel = {
+            authorId :1,
+            categoryId:1,
+            content:articleContent.value,
+            title:articleTitle.value
+        };
+
+        axios.post(blogAdminApi.articleApi,data).then(res=>{
+          console.log(res)
+        })
+
+        articleContent.value = '';
+        articleTitle.value = '';
+        mk2Html.value = '';
+      }
       return{
         mk2Html,
-        context,
+        content: articleContent,
         mk2HtmlHandle,
         ...BlogInit(),
         previewStatus,
         preview,
-        previewAndEdit
+        pushArticle,
+        previewAndEdit,
+        articleTitle
       }
     }
   })
@@ -151,15 +174,15 @@
       display: flex;
       textarea{
 
-          padding: 10px;
-          background: none;
-          color: #333333;
-          font-size: 20px;
-          width: 950px;
-          height: 600px;
-          @include textareaDef();
+        padding: 10px;
+        background: none;
+        color: #333333;
+        font-size: 20px;
+        width: 950px;
+        height: 600px;
+        @include textareaDef();
         overflow-y: auto !important;
-          margin-bottom: 20px;
+        margin-bottom: 20px;
         &::placeholder{
           color: #5D6D7E !important;
         }
