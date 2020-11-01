@@ -80,6 +80,7 @@
     display: flex;
     padding: 30px;
 
+
     flex-direction: row;
     margin-bottom: 100px;
     justify-content: center;

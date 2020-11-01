@@ -6,8 +6,8 @@ const blogIndexApi = {
 };
 
 const blogAdminApi = {
-  articleApi:baseUrl+"admin/article"
-
+  articleApi:baseUrl+"admin/article",
+  dynamicApi:baseUrl+"admin/dynamic"
 }
 
 

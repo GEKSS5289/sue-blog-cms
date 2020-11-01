@@ -7,7 +7,7 @@
       </div>
       <div class="item-options">
         <h2 class="article-edit options">编辑</h2>
-        <h2 class="article-delete options">删除</h2>
+        <h2 class="article-delete options" @click="deleteArticle(item.id)">删除</h2>
       </div>
     </div>
   </div>
@@ -19,6 +19,7 @@
   import {ArticeDescModel} from "@/common/model/datamodel";
   import axios from 'axios'
   import {blogAdminApi} from "@/common/api-router/apirouter";
+  import router from "@/router";
   export default  defineComponent({
     name: 'ArticleList',
     setup(){
@@ -26,6 +27,13 @@
       const articledesclist = reactive({
         data:Array<ArticeDescModel>(),
       })
+
+
+      function deleteArticle(itemId:number){
+        axios.delete(blogAdminApi.articleApi+'/'+itemId).then(res=>{
+          router.go(0)
+        })
+      }
 
       axios.get(blogAdminApi.articleApi).then(res=>{
         for (let i = 0; i < res.data.data.length; i++) {
@@ -36,6 +44,7 @@
 
       return{
         articledesclist,
+        deleteArticle,
         ...BlogInit()
       }
     }

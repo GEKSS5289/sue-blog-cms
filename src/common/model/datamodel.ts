@@ -15,3 +15,22 @@ export interface  ArticeDescModel {
   title:string,
   createdTime:Date
 }
+
+export interface DynamicModel{
+
+  content:string
+  dyImg?:string
+  dyVideo?:string
+  uid:number
+  mood:string
+}
+
+export interface Dynamic {
+  id:number
+  content: string,
+  createdTime: Date,
+  mood: string
+}
+
+
+

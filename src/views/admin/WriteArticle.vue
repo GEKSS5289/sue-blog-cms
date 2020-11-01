@@ -36,6 +36,7 @@
   import axios from 'axios'
   import { blogAdminApi } from '@/common/api-router/apirouter';
   import {ArticleModel} from "@/common/model/datamodel";
+  import router from "@/router";
   export default  defineComponent({
     name: 'WriteArticle',
     components:{
@@ -70,12 +71,15 @@
         };
 
         axios.post(blogAdminApi.articleApi,data).then(res=>{
-          console.log(res)
+          if(res.data.status == 200){
+            articleContent.value = '';
+            articleTitle.value = '';
+            mk2Html.value = '';
+            router.push('/admin/article/list')
+          }
         })
 
-        articleContent.value = '';
-        articleTitle.value = '';
-        mk2Html.value = '';
+
       }
       return{
         mk2Html,
