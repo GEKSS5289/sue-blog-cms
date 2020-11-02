@@ -287,3 +287,28 @@ ul{
   //height: 0;
 
 }
+
+.edit-active {
+
+  padding: 5px;
+  border-radius: 10px;
+  position: absolute;
+  @include shadow();
+  background-color: white !important;
+  display: flex;
+  flex-direction: row;
+  left: 90px;
+  top: -39px;
+  transition: all 0.3s;
+  opacity: 1;
+}
+
+.edit-no-active{
+  position: absolute;
+  left: 90px;
+  top: -39px;
+  transition: all 0.3s;
+  opacity: 0;
+  //height: 0;
+
+}

@@ -168,9 +168,11 @@
     }
 
     .markdown-html{
+      word-wrap: normal;
       padding: 20px;
       /*background-color: red;*/
-
+      overflow-y: auto;
+      //overflow-x: auto;
     }
     .work-spaces{
 
@@ -186,6 +188,7 @@
         height: 600px;
         @include textareaDef();
         overflow-y: auto !important;
+        //overflow-x: auto !important;
         margin-bottom: 20px;
         &::placeholder{
           color: #5D6D7E !important;

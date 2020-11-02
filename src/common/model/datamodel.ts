@@ -32,5 +32,10 @@ export interface Dynamic {
   mood: string
 }
 
+export interface UpdateDynamic {
+
+  content: string,
+  mood: string
+}
 
 
