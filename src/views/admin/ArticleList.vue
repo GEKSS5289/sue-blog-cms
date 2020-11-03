@@ -6,7 +6,7 @@
         <h1>发布时间:{{item.createdTime}}</h1>
       </div>
       <div class="item-options">
-        <h2 class="article-edit options">编辑</h2>
+        <h2 class="article-edit options" @click="editArticle(item.id)">编辑</h2>
         <h2 class="article-delete options" @click="deleteArticle(item.id)">删除</h2>
       </div>
     </div>
@@ -35,6 +35,13 @@
         })
       }
 
+
+      function editArticle(itemId:number){
+        router.push('/admin/article/edit/'+itemId)
+      }
+
+
+
       axios.get(blogAdminApi.articleApi).then(res=>{
         for (let i = 0; i < res.data.data.length; i++) {
           articledesclist.data.push(res.data.data[i])
@@ -45,6 +52,7 @@
       return{
         articledesclist,
         deleteArticle,
+        editArticle,
         ...BlogInit()
       }
     }

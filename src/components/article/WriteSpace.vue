@@ -1,5 +1,32 @@
 <template>
-  <write-space btntitle="发布"></write-space>
+  <div class="write-container" :class="{'blog-readme-begin':status,'blog-readme-end':!status}">
+    <div class="write-header">
+      <input type="text" v-model="articleTitle" placeholder="文章名" class="article-title">
+      <div class="article-preview">
+        <h1 @click="preview">{{previewAndEdit}}</h1>
+      </div>
+      <div class="article-category">
+        <h1>文章分类</h1>
+        <div v-if="false" class="category-list">
+          <div class="category-item">SpringBoot</div>
+          <div class="category-item">Java</div>
+          <div class="category-item">SpringCloud</div>
+          <div class="category-item">Redis</div>
+        </div>
+      </div>
+      <div class="article-submit">
+        <h1 @click="pushArticle">{{btntitle}}</h1>
+      </div>
+    </div>
+
+    <div class="work-spaces" v-if="!previewStatus">
+      <textarea placeholder="创作吧...." v-model="content" @input="mk2HtmlHandle"></textarea>
+    </div>
+
+    <div class="markdown-html" v-html="mk2Html" v-if="previewStatus">
+    </div>
+
+  </div>
 </template>
 
 <script lang="ts">
@@ -10,11 +37,15 @@ import axios from 'axios'
 import { blogAdminApi } from '@/common/api-router/apirouter';
 import {ArticleModel} from "@/common/model/datamodel";
 import router from "@/router";
-import WriteSpace from "@/components/article/WriteSpace.vue";
 export default  defineComponent({
-  name: 'WriteArticle',
+  name: 'WriteSpace',
   components:{
-    WriteSpace
+
+  },
+  props:{
+     btntitle:{
+       type:String
+     }
   },
   setup(){
 
@@ -71,7 +102,6 @@ export default  defineComponent({
 </script>
 
 <style lang="scss" scoped>
-
 @import "../../assets/style/mixin";
 .write-container{
   background-color: #FBFCFC;
