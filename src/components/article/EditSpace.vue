@@ -1,7 +1,9 @@
 <template>
+
   <div class="write-container" :class="{'blog-readme-begin':status,'blog-readme-end':!status}">
     <div class="write-header">
-      <input type="text" v-model="articleTitle" placeholder="文章名" class="article-title">
+
+      <input type="text" v-model="article.articleData.title" placeholder="文章名" class="article-title">
       <div class="article-preview">
         <h1 @click="preview">{{previewAndEdit}}</h1>
       </div>
@@ -20,7 +22,8 @@
     </div>
 
     <div class="work-spaces" v-if="!previewStatus">
-      <textarea placeholder="创作吧...." v-model="content" @input="mk2HtmlHandle"></textarea>
+
+      <textarea placeholder="创作吧...." v-model="article.articleData.content" @input="mk2HtmlHandle"></textarea>
     </div>
 
     <div class="markdown-html" v-html="mk2Html" v-if="previewStatus">
@@ -30,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent ,ref,reactive} from 'vue'
+import { defineComponent ,ref,reactive,toRefs} from 'vue'
 import {BlogInit} from "@/common/utils/BLogInit";
 import marked from 'marked'
 import axios from 'axios'
@@ -43,10 +46,13 @@ export default  defineComponent({
 
   },
   props:{
-     btntitle: {
-       type: String
-     },
+    btntitle: {
+      type: String
+    },
 
+    articleId:{
+      type:Number
+    }
 
 
   },
@@ -57,10 +63,35 @@ export default  defineComponent({
     const articleTitle = ref('')
     const previewStatus = ref(false)
     const previewAndEdit = ref('预览')
+    const article = reactive({
+      articleData:{
+        content:'',
+        title:'',
+        categoryId:'',
+        id:''
+      }
+    })
+
+
+
+    axios.get(blogAdminApi.articleApi+'/'+props.articleId).then(res=>{
+      // console.log(res)
+
+      article.articleData.content = res.data.data.content
+      article.articleData.title = res.data.data.title
+      article.articleData.categoryId = res.data.data.categoryId
+      article.articleData.id = res.data.data.id
+      // console.log(article.articleData.content)
+      // console.log(article.articleData.title)
+      // console.log(article.articleData.categoryId)
+      // console.log(article.articleData.id)
+      mk2Html.value = marked(article.articleData.content)
+    })
+
 
 
     function mk2HtmlHandle (){
-      mk2Html.value = marked(articleContent.value)
+      mk2Html.value = marked(article.articleData.content)
       console.log(mk2Html.value)
     }
 
@@ -77,21 +108,21 @@ export default  defineComponent({
       let data:ArticleModel = {
         authorId :1,
         categoryId:1,
-        content:articleContent.value,
-        title:articleTitle.value
+        content:article.articleData.content,
+        title:article.articleData.title
       };
 
-      axios.post(blogAdminApi.articleApi,data).then(res=>{
+      axios.put(blogAdminApi.articleApi+'/'+props.articleId,data).then(res=>{
         if(res.data.status == 200){
-          articleContent.value = '';
-          articleTitle.value = '';
+          article.articleData.content = '';
+          article.articleData.title = '';
           mk2Html.value = '';
           router.push('/admin/article/list')
         }
       })
-
-
     }
+
+
     return{
       mk2Html,
       content: articleContent,
@@ -101,7 +132,8 @@ export default  defineComponent({
       preview,
       pushArticle,
       previewAndEdit,
-      articleTitle
+      articleTitle,
+      article
     }
   }
 })
