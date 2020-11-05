@@ -12,6 +12,9 @@
         <router-link  :to="{name:'article'}" tag="a" class="menu-item"  @click="clickRouter('/admin/article','sue-article')">
           <h4>📃杂文管理</h4>
         </router-link>
+        <router-link  to="/admin/category" tag="a" class="menu-item"  @click="clickRouter('/admin/category','sue-category')">
+          <h4>🥃分类管理</h4>
+        </router-link>
         <router-link  :to="{name:'issue'}"  tag="a" class="menu-item" @click="clickRouter('/admin/issue','sue-issue')" >
           <h4>☕踩艰管理</h4>
         </router-link>

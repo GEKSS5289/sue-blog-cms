@@ -11,6 +11,7 @@ import FileMng from "@/views/admin/FileMng.vue";
 import ArticleList from "@/views/admin/ArticleList.vue"
 import WriteArticle from "@/views/admin/WriteArticle.vue";
 import EditArticle from "@/views/admin/EditArticle.vue";
+import CategoryMng from "@/views/admin/CategoryMng.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -55,6 +56,11 @@ const routes: Array<RouteRecordRaw> = [
             component:EditArticle
           }
         ]
+      },
+      {
+        path:'/admin/category',
+        name:'category',
+        component:CategoryMng
       },
       {
         path:'/admin/message',

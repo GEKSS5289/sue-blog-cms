@@ -124,6 +124,7 @@
         let dynamicData = dataList.dynamicData.filter(item=>item.id == itemId)
         editContent.value =dynamicData[0].content
         editMood.value = dynamicData[0].mood
+        dataList.dynamicData = dynamicData
       }
 
 
@@ -193,7 +194,12 @@
     /*align-items: center;*/
     .dynamic-write{
       /*width: 00px;*/
+      @include shadow();
+      //border-left: 5px solid #1ABC9C;
       margin-bottom: 30px;
+      transition: all 0.3s;
+
+      border-radius: 5px;
       .dynamic-header{
         display: flex;
         align-items:center;
@@ -217,17 +223,17 @@
       h1{
         margin-bottom: 10px;
       }
-      background-color: #1ABC9C;
-      /*width: 300px;*/
+      //background-color:#76D7C4;
+
       /*margin-left: 10px;*/
       padding: 20px;
-      color: white;
+      color: #1ABC9C;
       display: flex;
       flex-direction: column;
       textarea{
         padding: 10px;
         background: none;
-        color: white;
+        color: #333333;
         font-size: 20px;
 
         height: 100px;
@@ -236,7 +242,7 @@
       }
       .dynamic-push{
         padding: 10px;
-        background-color: white;
+        border:1px solid #1ABC9C;
         color: #1ABC9C;
         width: 50px;
         height: 10px;
@@ -246,7 +252,14 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        border-radius: 5px;
+        transition: all 1s;
+       &:hover{
+         background-color: #1ABC9C;
+         color: white;
+       }
       }
+
     }
     .dynamic-list{
       display: inline-block;

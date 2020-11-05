@@ -9,6 +9,10 @@
   box-shadow: 1px 1px 12px #888888;
 }
 
+@mixin shadowDynamic() {
+  box-shadow: 1px 1px 10px #888888;
+}
+
 @mixin shadowMenuItem() {
   box-shadow: 2px 2px 5px #888888;
 }

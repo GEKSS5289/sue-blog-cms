@@ -178,7 +178,7 @@ a {
 }
 
 textarea::placeholder{
-  color: white !important;
+  color: #A2D9CE!important;
 }
 
 pre{
@@ -199,25 +199,30 @@ pre{
   overflow-x: auto;
 }
 code{
-  background-color: #EAF2F8;
+  background:none;
   padding: 5px;
-  color: #1ABC9C;
+  color: #3683d6;
   font-size: 15px;
   font-weight: bold;
   border-radius: 5px;
   line-height: 40px;
+  margin-left: 5px;
+  margin-right: 5px;
 
 }
 
 blockquote{
-  background-color:#34495E;
+  background-color:#EBF5FB;
 
-  color: white;
+  color:#3498DB;
   font-weight: bold;
 
   font-size: 20px;
-  border-left:5px solid #839192;
+  border-left:5px solid #3498DB;
   padding: 30px;
+  code{
+    background-color: #FBFCFC;
+  }
   h1,
   h2,
   h3,
