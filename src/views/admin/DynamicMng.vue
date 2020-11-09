@@ -139,11 +139,12 @@
       }
 
       function cancelUpdate(){
-        dynamicShow.value = !dynamicShow.value
+        router.go(0)
       }
 
      function clickEdit(){
         editActive.value = !editActive.value
+
      }
 
      function scanner(item:string){

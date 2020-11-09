@@ -274,18 +274,19 @@ ul{
   background-color: white !important;
   display: flex;
   flex-direction:column;
-  left: 54px;
+  left: 64px;
   top: -19px;
   align-items: center;
   justify-content: center;
   transition: all 0.5s;
   opacity: 1;
+  border-radius: 5px;
 
 }
 
 .no-active{
   position: absolute;
-  left: 54px;
+  left: 64px;
   top: -18px;
   transition: all 0.5s;
   opacity: 0;

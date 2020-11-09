@@ -33,9 +33,16 @@ export interface Dynamic {
 }
 
 export interface UpdateDynamic {
-
   content: string,
   mood: string
 }
+
+
+export interface Category{
+  id:number
+  categoryName:string
+  categoryImg:string;
+}
+
 
 
