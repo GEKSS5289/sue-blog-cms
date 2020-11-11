@@ -8,12 +8,9 @@
         <h1 @click="preview">{{previewAndEdit}}</h1>
       </div>
       <div class="article-category">
-        <h1>文章分类</h1>
-        <div v-if="false" class="category-list">
-          <div class="category-item">SpringBoot</div>
-          <div class="category-item">Java</div>
-          <div class="category-item">SpringCloud</div>
-          <div class="category-item">Redis</div>
+        <h1 @click="clickCategory">{{categorySelect}}</h1>
+        <div v-if="categoryStatus"  class="category-list">
+          <div class="category-item" v-for="(item,index) in categoryList.categorys" :key="index" @click="categorySelectItem(item)">{{item.categoryImg}}{{item.categoryName}}</div>
         </div>
       </div>
       <div class="article-submit">
@@ -38,7 +35,7 @@ import {BlogInit} from "@/common/utils/BLogInit";
 import marked from 'marked'
 import axios from 'axios'
 import { blogAdminApi } from '@/common/api-router/apirouter';
-import {ArticleModel} from "@/common/model/datamodel";
+import {ArticleModel, Category} from "@/common/model/datamodel";
 import router from "@/router";
 export default  defineComponent({
   name: 'WriteSpace',
@@ -71,6 +68,35 @@ export default  defineComponent({
         id:''
       }
     })
+
+    const categoryStatus = ref(false)
+    const categoryList = reactive({
+      categorys:Array<Category>()
+    })
+    const categoryData = reactive({
+      categoryId:0,
+      categoryName:''
+    })
+    const categorySelect = ref('文章分类')
+
+    function categorySelectItem(category:Category){
+      categorySelect.value = category.categoryName
+      categoryStatus.value = !categoryStatus.value
+      categoryData.categoryName = category.categoryName
+      categoryData.categoryId = category.id
+    }
+
+    axios.get(blogAdminApi.categoryApi).then(res=>{
+      for(let i = 0;i<res.data.data.length;i++){
+        categoryList.categorys.push(res.data.data[i])
+        console.log(res.data.data[i])
+      }
+
+    })
+
+    function clickCategory(){
+      categoryStatus.value = !categoryStatus.value
+    }
 
 
 
@@ -107,11 +133,11 @@ export default  defineComponent({
     function pushArticle() {
       let data:ArticleModel = {
         authorId :1,
-        categoryId:1,
+        categoryId:categoryData.categoryId,
         content:article.articleData.content,
         title:article.articleData.title
       };
-
+      console.log(data.categoryId)
       axios.put(blogAdminApi.articleApi+'/'+props.articleId,data).then(res=>{
         if(res.data.status == 200){
           article.articleData.content = '';
@@ -133,7 +159,12 @@ export default  defineComponent({
       pushArticle,
       previewAndEdit,
       articleTitle,
-      article
+      categoryStatus,
+      categoryList,
+      clickCategory,
+      article,
+      categorySelect,
+      categorySelectItem
     }
   }
 })
@@ -141,6 +172,28 @@ export default  defineComponent({
 
 <style lang="scss" scoped>
 @import "../../assets/style/mixin";
+.category-list{
+  position: absolute;
+  margin-top: 10px;
+  /*padding: 30px;*/
+
+
+  background-color: #FBFCFC;
+  color: white;
+  @include shadow();
+  .category-item{
+    padding: 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+    color: #333333;
+    font-weight: bold;
+    &:hover{
+      background-color: #1ABC9C;
+      color: white;
+
+    }
+  }
+}
 .write-container{
   background-color: #FBFCFC;
   padding: 20px;
@@ -179,12 +232,7 @@ export default  defineComponent({
           color: #1ABC9C;
         }
       }
-      .category-list{
-        position: absolute;
-        /*padding: 30px;*/
-        background-color: #1ABC9C;
-        color: white;
-      }
+
     }
     .article-preview{
       h1{

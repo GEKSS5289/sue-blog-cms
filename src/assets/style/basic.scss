@@ -265,6 +265,14 @@ ul{
 
   }
 
+  img{
+    width: 920px;
+    height: 500px;
+  }
+
+  p{
+    font-size: 24px;
+  }
 }
 .active{
 
@@ -318,3 +326,13 @@ ul{
   //height: 0;
 
 }
+
+.smallStatus{
+  transform: scale(0);
+}
+
+.bigStatus{
+  transform: scale(1);
+}
+
+

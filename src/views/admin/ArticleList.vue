@@ -3,6 +3,7 @@
     <div class="article-item" v-for="(item,index) in articledesclist.data" :key="index" >
       <div class="item-info">
         <h1>{{item.title}}</h1>
+        <h4>{{i}}</h4>
         <h1>发布时间:{{item.createdTime}}</h1>
       </div>
       <div class="item-options">

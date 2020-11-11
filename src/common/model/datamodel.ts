@@ -10,7 +10,7 @@ export interface ArticleModel {
   authorId:number
 }
 
-export interface  ArticeDescModel {
+export interface ArticeDescModel {
   id:number,
   title:string,
   createdTime:Date
@@ -42,6 +42,11 @@ export interface Category{
   id:number
   categoryName:string
   categoryImg:string;
+}
+
+export interface CategoryModel{
+ categoryName:string;
+ categoryImg:string;
 }
 
 
