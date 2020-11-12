@@ -19,7 +19,6 @@
     </div>
 
     <div class="work-spaces" v-if="!previewStatus">
-
       <textarea placeholder="创作吧...." v-model="article.articleData.content" @input="mk2HtmlHandle"></textarea>
     </div>
 
@@ -70,13 +69,19 @@ export default  defineComponent({
     })
 
     const categoryStatus = ref(false)
+
+
     const categoryList = reactive({
       categorys:Array<Category>()
     })
+
+
     const categoryData = reactive({
       categoryId:0,
       categoryName:''
     })
+
+
     const categorySelect = ref('文章分类')
 
     function categorySelectItem(category:Category){
@@ -111,6 +116,7 @@ export default  defineComponent({
       // console.log(article.articleData.title)
       // console.log(article.articleData.categoryId)
       // console.log(article.articleData.id)
+      categoryData.categoryId = res.data.data.categoryId
       mk2Html.value = marked(article.articleData.content)
     })
 
@@ -137,7 +143,7 @@ export default  defineComponent({
         content:article.articleData.content,
         title:article.articleData.title
       };
-      console.log(data.categoryId)
+
       axios.put(blogAdminApi.articleApi+'/'+props.articleId,data).then(res=>{
         if(res.data.status == 200){
           article.articleData.content = '';

@@ -46,7 +46,6 @@
         border-bottom: 2px solid white;
         padding-bottom: 5px;
       }
-
     }
   }
 </style>
