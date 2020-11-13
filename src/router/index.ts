@@ -3,16 +3,19 @@ import Login from "@/views/Login.vue";
 import Admin from "@/views/admin/Admin.vue";
 import Sue from "@/views/admin/Sue.vue";
 import DynamicMng from "@/views/admin/DynamicMng.vue";
-import ArticleMng from "@/views/admin/ArticleMng.vue";
-import MessageMng from "@/views/admin/MessageMng.vue";
+import ArticleMng from "@/views/admin/article/ArticleMng.vue";
+import MessageMng from "@/views/admin/message/MessageMng.vue";
 import LogsMng from "@/views/admin/LogsMng.vue";
 import IssueMng from "@/views/admin/IssueMng.vue";
 import FileMng from "@/views/admin/FileMng.vue";
-import ArticleList from "@/views/admin/ArticleList.vue"
-import WriteArticle from "@/views/admin/WriteArticle.vue";
-import EditArticle from "@/views/admin/EditArticle.vue";
+import ArticleList from "@/views/admin/article/ArticleList.vue"
+import WriteArticle from "@/views/admin/article/WriteArticle.vue";
+import EditArticle from "@/views/admin/article/EditArticle.vue";
 import CategoryMng from "@/views/admin/CategoryMng.vue";
 import EditCategory from "@/components/category/EditCategory.vue";
+import MessagePassed from "@/views/admin/message/MessagePassed.vue";
+import MessageCheckPending from "@/views/admin/message/MessageCheckPending.vue";
+import MessageNotPass from "@/views/admin/message/MessageNotPass.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -43,17 +46,17 @@ const routes: Array<RouteRecordRaw> = [
         children:[
           {
             path:'/admin/article/list',
-            name:'articlelist',
+            name:'articleList',
             component:ArticleList
           },
           {
             path:'/admin/article/write',
-            name:'writearticle',
+            name:'writeArticle',
             component:WriteArticle
           },
           {
             path:'/admin/article/edit/:id',
-            name:'editarticle',
+            name:'editArticle',
             component:EditArticle
           },
 
@@ -67,7 +70,26 @@ const routes: Array<RouteRecordRaw> = [
       {
         path:'/admin/message',
         name:'message',
-        component:MessageMng
+        component:MessageMng,
+        redirect:'/admin/message/audit',
+        children:[
+          {
+            path:'/admin/message/passed',
+            name:'messagePassed',
+            component:MessagePassed
+          },
+          {
+            path:'/admin/message/audit',
+            name:'messageCheckPending',
+            component:MessageCheckPending
+          },
+          {
+            path:'/admin/message/fail',
+            name:'messageNotPass',
+            component:MessageNotPass
+          },
+
+        ]
       },
       {
         path:'/admin/logs',

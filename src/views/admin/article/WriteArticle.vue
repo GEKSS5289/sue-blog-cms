@@ -72,7 +72,7 @@ export default  defineComponent({
 
 <style lang="scss" scoped>
 
-@import "../../assets/style/mixin";
+@import "../../../assets/style/mixin";
 .write-container{
   background-color: #FBFCFC;
   padding: 20px;

@@ -8,7 +8,10 @@ const blogIndexApi = {
 const blogAdminApi = {
   articleApi:baseUrl+"admin/article",
   dynamicApi:baseUrl+"admin/dynamic",
-  categoryApi:baseUrl+"admin/category"
+  categoryApi:baseUrl+"admin/category",
+  messageApi:baseUrl+"admin/message",
+  messagePassApi:baseUrl+"admin/message/pass",
+  messageFailApi:baseUrl+"admin/message/fail"
 }
 
 

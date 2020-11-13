@@ -50,4 +50,11 @@ export interface CategoryModel{
 }
 
 
+export interface Message{
+  id:number;
+  content:string;
+  createdTime:Date;
+}
+
+
 

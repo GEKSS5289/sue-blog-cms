@@ -2,10 +2,8 @@
 
   <div class="sue-container" :class="{'blog-readme-begin':status,'blog-readme-end':!status}">
     <div class="message-table">
-      <router-link tag="a" to="/admin/article/list">待审核留言</router-link>
-      <router-link tag="a" to="/admin/article/write" class="table-2">审核通过</router-link>
-      <router-link tag="a" to="/admin/article/write" class="table-2">审核未通过</router-link>
-
+      <router-link tag="a" to="/admin/message/audit">待审核留言</router-link>
+      <router-link tag="a" to="/admin/message/passed" class="table-2">审核通过</router-link>
       <!--      <api-router-link tag="a">写文章</api-router-link>-->
     </div>
     <router-view/>
