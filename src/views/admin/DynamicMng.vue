@@ -55,7 +55,7 @@
   import {defineComponent, ref,reactive} from 'vue'
   import {BlogInit} from "@/common/utils/BLogInit";
   import axios from 'axios'
-  import {blogAdminApi, blogIndexApi} from "@/common/api-router/apirouter";
+  import {blogAdminApi} from "@/common/api-router/apirouter";
   import {useRoute} from "vue-router";
   import router from "@/router";
   import {Dynamic, DynamicModel, UpdateDynamic} from "@/common/model/datamodel";
