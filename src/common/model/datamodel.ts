@@ -58,3 +58,9 @@ export interface Message{
 
 
 
+export interface FileModel{
+  id:number,
+  fileName:string,
+  fileSize:number,
+  createdTime: Date
+}
