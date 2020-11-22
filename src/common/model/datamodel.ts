@@ -62,5 +62,7 @@ export interface FileModel{
   id:number,
   fileName:string,
   fileSize:number,
-  createdTime: Date
+  createdTime: Date,
+  fileUsable:boolean
 }
+

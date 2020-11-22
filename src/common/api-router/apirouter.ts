@@ -8,7 +8,8 @@ const blogAdminApi = {
   categoryApi:baseUrl+"/category",
   messageApi:baseUrl+"/message",
   messagePassApi:baseUrl+"/message/pass",
-  messageFailApi:baseUrl+"/message/fail"
+  messageFailApi:baseUrl+"/message/fail",
+  fileApi:baseUrl+"/file"
 }
 
 
