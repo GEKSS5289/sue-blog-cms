@@ -14,47 +14,67 @@
         </div>
       </div>
     </div>
+    <div class="file-upload">
+
+      <input type="file" @change="selectFile">
+
+
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-    import {defineComponent,reactive} from 'vue'
-    import {BlogInit} from "@/common/utils/BLogInit";
-    import {FileModel} from "@/common/model/datamodel";
-    import axios from 'axios'
-    import {blogAdminApi} from "@/common/api-router/apirouter";
-    import router from "@/router";
-    export default defineComponent({
-        name: "FileMng",
-        setup(){
+import {defineComponent,reactive} from 'vue'
+import {BlogInit} from "@/common/utils/BLogInit";
+import {FileModel} from "@/common/model/datamodel";
+import axios from 'axios'
+import {blogAdminApi} from "@/common/api-router/apirouter";
+import router from "@/router";
+export default defineComponent({
+  name: "FileMng",
+  setup(){
 
-          const dataList = reactive({
-            fileData:Array<FileModel>()
-          })
-
-          axios.get(blogAdminApi.fileApi).then(res=>{
-            for(let i = 0;i<res.data.data.length;i++){
-              dataList.fileData.push(res.data.data[i])
-            }
-            console.log(dataList.fileData)
-          })
-
-          const offerOrNoOffer=(id:number)=>{
-            axios.put(blogAdminApi.fileApi+"/"+id)
-            router.go(0)
-          }
-
-          return{
-            ...BlogInit(),
-            dataList,
-            offerOrNoOffer
-          }
-        }
+    const dataList = reactive({
+      fileData:Array<FileModel>()
     })
+
+    axios.get(blogAdminApi.fileApi).then(res=>{
+      for(let i = 0;i<res.data.data.length;i++){
+        dataList.fileData.push(res.data.data[i])
+      }
+      console.log(dataList.fileData)
+    })
+
+    const offerOrNoOffer=(id:number)=>{
+      axios.put(blogAdminApi.fileApi+"/"+id)
+      router.go(0)
+    }
+
+    const selectFile = (file:any)=>{
+      const formdata = new FormData()
+      formdata.append("file",file.target.files[0])
+      axios.post(blogAdminApi.fileApi+'?userId=1',formdata,{
+        headers:{'Content-Type':'multipart/form-data'}
+      }).then(res=>{
+        console.log("ok")
+      })
+    }
+
+
+
+    return{
+      ...BlogInit(),
+      dataList,
+      offerOrNoOffer,
+      selectFile
+    }
+  }
+})
 </script>
 
 <style lang="scss" scoped>
 .sue-container{
+  display: flex;
   .file-list{
     .file-item{
       margin-bottom:20px;
@@ -106,6 +126,9 @@
       align-items: center;
       justify-content: space-between;
     }
+  }
+  .file-upload{
+    margin-left: 50px;
   }
 }
 </style>
